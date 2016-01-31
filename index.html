@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Q & A</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script>
+			$(".dropdown-menu li a").click(function(){
+				alert("hi");
+				$(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+				$(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+			});
+		</script>
+		<script type="text/javascript" src="cr_json.js"></script>
+		<script type="text/javascript" src="sc_json.js"></script>
+		<script type="text/javascript" src="myJavascript.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="well well-sm text-center page-header" style="background-color:#4db8ff"><h1>Q & A</h1></div>
+			<br/>
+
+			<div class="row">
+				<div class="col-md-6">
+					<p class="bg-info text-center">Please select the section</p>
+					<select name="question_type" class="btn btn-primary" style="width:100%" onchange="setTheSection(this)">
+						<option value="none">None</option>
+						<option value="CR">Critical Reasoning</option>
+						<option value="SC">Sentence Correction</option>
+						<option value="PS">Problem Solving</option>
+						<option value="DS">Data Sufficiency</option>
+					</select>
+				</div>
+				<div class="col-md-6">
+					<p class="bg-success text-center">Please select the complexity</p>
+					<select id="complexityDropDown" name="complexity" class="btn btn-info" style="width:100%" onchange="getTheQuestion(this)" disabled>
+						<option value="none">None</option>
+						<option value="high">High</option>
+						<option value="medium">Medium</option>
+						<option value="low">Low</option>
+					</select>
+
+				</div>
+			</div>
+
+			<!--
+			<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Question Type
+					<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+							<li><a href="#">CR</a></li>
+							<li><a href="#">SC</a></li>
+							<li><a href="#">PS</a></li>
+							<li><a href="#">DS</a></li>
+					</ul>
+			</div>
+			-->
+			<br/>
+			<div id="questionblock" style="display:none;" class="jumbotron">
+				<div id="question"></div>
+				<form role="form" class="col-md-12" style="width:100%">
+					<label class="radio-inline">
+						<input type="radio" name="optradio" value="A" id="optionRadioButton">A
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="optradio" value="B" id="optionRadioButton">B
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="optradio" value="C" id="optionRadioButton">C
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="optradio" value="D" id="optionRadioButton">D
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="optradio" value="E" id="optionRadioButton">E
+					</label>
+				</form>
+				<br/>
+			</div>
+			<div class="well well-lg" style="display:none;" id="buttonForEvaluation">
+				<button type="button" class="btn btn-primary" onclick="checkTheAnswer()">Evaluate</button>
+				<button id="btnGetAnotherQuestion" type="button" class="btn btn-info" onclick="getTheQuestion(document.getElementById('complexityDropDown'))"  disabled>Get Another Question</button><span> the answer is : <Strong id="answerOption"></Strong> </span>
+			</div>
+			<br/>
+			<br/>
+			<div class="col-md-12" >
+				<button type="button" style="width:100%" class="btn btn-info" disabled>Created by Tushar Saurabh</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
